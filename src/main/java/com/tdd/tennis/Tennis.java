@@ -48,17 +48,17 @@ public class Tennis {
     }
 
     public boolean isDeuce(){
-        return allPlayersHasDeucePoint()
+        return allPlayersHaveDeucePoint()
                 && player1.point() == player2.point();
     }
 
-    private boolean allPlayersHasDeucePoint(){
+    private boolean allPlayersHaveDeucePoint(){
         return playerHasAtLeastDeucePoint(player1) && playerHasAtLeastDeucePoint(player2);
     }
 
     private Player getAdvantage(){
-        if (allPlayersHasDeucePoint() && player1HasAdvantage()) return player1;
-        if (allPlayersHasDeucePoint() && player2HasAdvantage()) return player2;
+        if (allPlayersHaveDeucePoint() && player1HasAdvantage()) return player1;
+        if (allPlayersHaveDeucePoint() && player2HasAdvantage()) return player2;
         return null;
     }
 
