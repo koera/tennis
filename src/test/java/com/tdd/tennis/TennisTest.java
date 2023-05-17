@@ -7,6 +7,7 @@ public class TennisTest {
 
     private final int WIN_POINT = 4;
     private final String player1Name = "player1";
+    private final String player2Name = "player2";
 
     @Test
     void testTennis__winner_should_be_the_player_win_4_points_and_2_points_more_than_the_opponent__player1_win(){
@@ -77,9 +78,28 @@ public class TennisTest {
         assertEquals("DEUCE", game.getScore());
     }
 
+    @Test
+    void testTennis__player_1_should_be_advantage(){
+        var deucePoint = 3;
+
+        Tennis game = playTennis(deucePoint + 1, deucePoint);
+
+        assertEquals("Advantage for " + player1Name, game.getScore());
+    }
+
+
+    @Test
+    void testTennis__player_2_should_be_advantage(){
+        var deucePoint = 3;
+
+        Tennis game = playTennis(deucePoint, deucePoint + 1);
+
+        assertEquals("Advantage for " + player2Name, game.getScore());
+    }
+
     private Tennis playTennis(int player1Point, int player2Point) {
         Player player1 = new Player(player1Name, player1Point);
-        Player player2 = new Player("player2", player2Point);
+        Player player2 = new Player(player2Name, player2Point);
 
         return new Tennis(player1, player2);
     }

@@ -8,6 +8,7 @@ public class Tennis {
     private final String COMMA = ",";
     private final int DEUCE_POINT = 3;
     private final String DEUCE = "DEUCE";
+    private final String ADVANTAGE = "Advantage for ";
 
     Player player1;
     Player player2;
@@ -18,7 +19,8 @@ public class Tennis {
     }
 
     public String getScore(){
-        Player winner = getWinner();
+        var winner = getWinner();
+        var advantage = getAdvantage();
 
         if(winner != null) {
             return winner.name() + " win";
@@ -26,6 +28,10 @@ public class Tennis {
 
         if(isDeuce()) {
             return DEUCE;
+        }
+
+        if(advantage != null) {
+            return ADVANTAGE + advantage.name();
         }
 
         return getLabel(player1.point()) + COMMA + getLabel(player2.point());
@@ -42,8 +48,26 @@ public class Tennis {
     }
 
     public boolean isDeuce(){
-        return playerHasAtLeastDeucePoint(player1) && playerHasAtLeastDeucePoint(player2)
+        return allPlayersHasDeucePoint()
                 && player1.point() == player2.point();
+    }
+
+    private boolean allPlayersHasDeucePoint(){
+        return playerHasAtLeastDeucePoint(player1) && playerHasAtLeastDeucePoint(player2);
+    }
+
+    private Player getAdvantage(){
+        if (allPlayersHasDeucePoint() && player1HasAdvantage()) return player1;
+        if (allPlayersHasDeucePoint() && player2HasAdvantage()) return player2;
+        return null;
+    }
+
+    private boolean player1HasAdvantage() {
+        return player1.point() >= player2.point() + 1;
+    }
+
+    private boolean player2HasAdvantage() {
+        return player2.point() >= player1.point() + 1;
     }
 
     private boolean playerHasAtLeastDeucePoint(Player player) {
