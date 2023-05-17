@@ -35,11 +35,11 @@ public class TennisTest {
 
     @Test
     void testTennis__winner_should_be_null_if_no_winner(){
-        var player1Point = WIN_POINT -2;
-        var player2Point = WIN_POINT -2;
+        var noWinPointForPlayer1 = WIN_POINT -2;
+        var noWinPointForPlayer2 = WIN_POINT -2;
 
-        Player player1 = new Player("player1", player1Point);
-        Player player2 = new Player("player2", player2Point);
+        Player player1 = new Player("player1", noWinPointForPlayer1);
+        Player player2 = new Player("player2", noWinPointForPlayer2);
 
         Tennis game = new Tennis(player1, player2);
 
