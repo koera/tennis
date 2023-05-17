@@ -59,6 +59,24 @@ public class TennisTest {
         assertEquals(player1Name + " win", game.getScore());
     }
 
+    @Test
+    void testTennis__should_deuce_if_the_2_players_scored_at_least_3_points_and_the_score_are_equal(){
+        var deucePoint = 3;
+
+        Tennis game = playTennis(deucePoint, deucePoint);
+
+        assertTrue(game.isDeuce());
+    }
+
+    @Test
+    void testTennis__score_should_be_deuce_if_deuce(){
+        var deucePoint = 3;
+
+        Tennis game = playTennis(deucePoint, deucePoint);
+
+        assertEquals("DEUCE", game.getScore());
+    }
+
     private Tennis playTennis(int player1Point, int player2Point) {
         Player player1 = new Player(player1Name, player1Point);
         Player player2 = new Player("player2", player2Point);
