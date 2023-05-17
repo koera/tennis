@@ -38,11 +38,15 @@ public class TennisTest {
         var noWinPointForPlayer1 = WIN_POINT -2;
         var noWinPointForPlayer2 = WIN_POINT -2;
 
-        Player player1 = new Player("player1", noWinPointForPlayer1);
-        Player player2 = new Player("player2", noWinPointForPlayer2);
-
-        Tennis game = new Tennis(player1, player2);
+        Tennis game = playTennis(noWinPointForPlayer1, noWinPointForPlayer2);
 
         assertNull(game.getWinner());
+    }
+
+    private static Tennis playTennis(int player1Point, int player2Point) {
+        Player player1 = new Player("player1", player1Point);
+        Player player2 = new Player("player2", player2Point);
+
+        return new Tennis(player1, player2);
     }
 }
